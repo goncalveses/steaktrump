@@ -246,17 +246,27 @@ code {
                style="pointer-events: none; background-color: #ccc; color: #666;">
                 <span class="elementor-button-content-wrapper">
                     <span class="elementor-button-text">Buy with POLYGON</span>
-                    <span id="countdown-timer" style="margin-left: 10px; font-size: 14px; color: #BB133E;"></span>
                 </span>
             </a>
         </div>
+        <!-- Contagem regressiva abaixo do botão -->
+        <div id="countdown-timer" style="margin-top: 10px; text-align: center; font-size: 14px; color: #BB133E;"></div>
     </div>
 </div>
 
 <script>
-    // Define o prazo final (7 dias a partir de agora)
-    const deadline = new Date();
-    deadline.setDate(deadline.getDate() + 7);
+    // Verifica se o prazo final já está salvo no localStorage
+    let deadline = localStorage.getItem("deadline");
+
+    if (!deadline) {
+        // Se não estiver salvo, define o prazo para 7 dias a partir de agora e salva
+        const now = new Date();
+        deadline = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString();
+        localStorage.setItem("deadline", deadline);
+    } else {
+        // Converte o prazo salvo de string para um objeto Date
+        deadline = new Date(deadline);
+    }
 
     function updateCountdown() {
         const now = new Date();
@@ -270,7 +280,7 @@ code {
             buyButton.style.pointerEvents = "auto";
             buyButton.style.backgroundColor = "#BB133E"; // Cor original do botão
             buyButton.style.color = "#fff"; // Texto branco
-            countdownTimer.innerText = "Ready!";
+            countdownTimer.innerText = "The button is now active!";
             return;
         }
 
@@ -280,13 +290,17 @@ code {
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        // Atualiza o contador no botão
-        countdownTimer.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        // Atualiza o contador abaixo do botão
+        countdownTimer.innerText = `Time left: ${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     // Atualiza o contador a cada segundo
     setInterval(updateCountdown, 1000);
+
+    // Inicializa a contagem imediatamente ao carregar a página
+    updateCountdown();
 </script>
+
 				<!--<div class="elementor-element elementor-element-b662d75 elementor-widget elementor-widget-button" data-id="b662d75" data-element_type="widget" data-widget_type="button.default">
 				<div class="elementor-widget-container">
 									<div class="elementor-button-wrapper">
