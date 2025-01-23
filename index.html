@@ -243,23 +243,50 @@ code {
 									<div class="elementor-button-wrapper">
 					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-float" href="https://app.uniswap.org/#/swap?outputCurrency=0x576e2BeD8F7b46D34016198911Cdf9886f78bea7">
 						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">Buy with Ethereum</span>
+									<span class="elementor-button-text">Buy with POLYGON</span>
 					</span>
 					</a>
 				</div>
 								</div>
 				</div>
 				<div class="elementor-element elementor-element-b662d75 elementor-widget elementor-widget-button" data-id="b662d75" data-element_type="widget" data-widget_type="button.default">
-				<div class="elementor-widget-container">
-									<div class="elementor-button-wrapper">
-					<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-float" href="https://jup.ag/swap/SOL-HaP8r3ksG76PhQLTqR8FYBeNiQpejcFbQmiHbg787Ut1">
-						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">Buy with Solana</span>
-					</span>
-					</a>
+				    <div class="elementor-widget-container">
+				        <div class="elementor-button-wrapper">
+				            <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-float" href="https://jup.ag/swap/SOL-HaP8r3ksG76PhQLTqR8FYBeNiQpejcFbQmiHbg787Ut1">
+				                <span class="elementor-button-content-wrapper">
+				                    <span class="elementor-button-text">Buy with Solana</span>
+				                    <span id="countdown-timer" style="margin-left: 10px; font-size: 14px; color: #BB133E;"></span>
+				                </span>
+				            </a>
+				        </div>
+				    </div>
 				</div>
-								</div>
-				</div>
+
+				<script>
+				    // Define o prazo final (7 dias a partir de agora)
+				    const deadline = new Date();
+				    deadline.setDate(deadline.getDate() + 7);
+
+				    function updateCountdown() {
+				        const now = new Date();
+				        const timeLeft = deadline - now;
+
+				        if (timeLeft <= 0) {
+				            document.getElementById("countdown-timer").innerText = "Time's up!";
+				            return;
+				        }
+
+				        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+				        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+				        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+				        document.getElementById("countdown-timer").innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+				    }
+
+				    // Atualiza o contador a cada segundo
+				    setInterval(updateCountdown, 1000);
+				</script>
 				<div class="elementor-element elementor-element-afdae50 elementor-widget-tablet__width-initial elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="afdae50" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
 								Join the STEAK TRUMP Revolution: The Ultimate Blockchain Movement Fueling Freedom and Prosperity!							</div>
